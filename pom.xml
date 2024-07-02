@@ -55,4 +55,16 @@
     <properties>
         <openmrsPlatformVersion>2.7.0-SNAPSHOT</openmrsPlatformVersion>
     </properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!--	OpenMRS modules-->
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>legacyui-omod</artifactId>
+				<version>1.16.0</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
