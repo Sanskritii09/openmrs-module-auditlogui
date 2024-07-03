@@ -41,11 +41,10 @@ public class AdminList extends AdministrationSectionExt {
 	 */
 	public Map<String, String> getLinks() {
 		
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, String> map = new HashMap<>();
 		
 		map.put("module/enversauditing/enversauditing.form", "eversauditing.title");
 		
 		return map;
 	}
-	
 }

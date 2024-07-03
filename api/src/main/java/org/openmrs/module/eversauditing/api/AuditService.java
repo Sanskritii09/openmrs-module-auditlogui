@@ -8,4 +8,6 @@ public interface AuditService {
 	
 	public <T> List<AuditEntity<T>> getAllRevisions(Class<T> entityClass);
 	
+	public <T> List<AuditEntity<T>> getAllRevisions(String entityClass);
+	
 }

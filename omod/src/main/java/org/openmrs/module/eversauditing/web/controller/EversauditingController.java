@@ -9,22 +9,29 @@
  */
 package org.openmrs.module.eversauditing.web.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Encounter;
 import org.openmrs.Patient;
-import org.openmrs.User;
-import org.openmrs.api.UserService;
+import org.openmrs.Person;
+import org.openmrs.module.eversauditing.AuditEntity;
 import org.openmrs.module.eversauditing.api.AuditService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openmrs.module.eversauditing.api.EversauditingService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * This class configured as controller using annotation and mapped with the URL of
@@ -34,17 +41,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "module/enversauditing/enversauditing.form")
 public class EversauditingController {
 	
-	/** Logger for this class and subclasses */
 	protected final Log log = LogFactory.getLog(getClass());
 	
-	@Autowired
-	UserService userService;
-	
-	@Autowired
-	AuditService auditService;
-	
-	/** Success form view name */
 	private final String VIEW = "/module/enversauditing/enversauditing";
+	
+	private final AuditService auditService;
+	
+	public EversauditingController(AuditService auditService) {
+		this.auditService = auditService;
+	}
 	
 	/**
 	 * Initially called after the getUsers method to get the landing form name
@@ -56,37 +61,22 @@ public class EversauditingController {
 		return VIEW;
 	}
 	
-	/**
-	 * All the parameters are optional based on the necessity
-	 * 
-	 * @param httpSession
-	 * @param anyRequestObject
-	 * @param errors
-	 * @return
-	 */
+	@ModelAttribute("classes")
+	protected List<String> getClasses() throws Exception {
+		List<String> classes = new ArrayList<>();
+		classes.add(Patient.class.getName());
+		classes.add(Person.class.getName());
+		classes.add(Encounter.class.getName());
+		return classes;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public String onPost(HttpSession httpSession, @ModelAttribute("anyRequestObject") Object anyRequestObject,
-	        BindingResult errors) {
-		
-		if (errors.hasErrors()) {
-			// return error view
+	public String showClassFormAndAudits(@RequestParam(value = "selectedClass", required = false) String className,
+	        Model model) {
+		if (className != null && !className.isEmpty()) {
+			model.addAttribute("audits", auditService.getAllRevisions(className));
+			model.addAttribute("currentClass", className);
 		}
-		
 		return VIEW;
 	}
-	
-	/**
-	 * This class returns the form backing object. This can be a string, a boolean, or a normal java
-	 * pojo. The bean name defined in the ModelAttribute annotation and the type can be just defined
-	 * by the return type of this method
-	 */
-	@ModelAttribute("users")
-	protected List<User> getUsers() throws Exception {
-		List<User> users = userService.getAllUsers();
-		auditService.getAllRevisions(Patient.class);
-		// this object will be made available to the jsp page under the variable name
-		// that is defined in the @ModuleAttribute tag
-		return users;
-	}
-	
 }
