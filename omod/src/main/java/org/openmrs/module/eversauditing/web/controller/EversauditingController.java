@@ -15,8 +15,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.Patient;
 import org.openmrs.User;
 import org.openmrs.api.UserService;
+import org.openmrs.module.eversauditing.api.AuditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -37,6 +39,9 @@ public class EversauditingController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	AuditService auditService;
 	
 	/** Success form view name */
 	private final String VIEW = "/module/enversauditing/enversauditing";
@@ -78,7 +83,7 @@ public class EversauditingController {
 	@ModelAttribute("users")
 	protected List<User> getUsers() throws Exception {
 		List<User> users = userService.getAllUsers();
-		
+		auditService.getAllRevisions(Patient.class);
 		// this object will be made available to the jsp page under the variable name
 		// that is defined in the @ModuleAttribute tag
 		return users;

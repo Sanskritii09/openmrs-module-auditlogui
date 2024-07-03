@@ -27,32 +27,4 @@ import static org.junit.Assert.*;
  */
 public class EversauditingDaoTest extends BaseModuleContextSensitiveTest {
 	
-	@Autowired
-	EversauditingDao dao;
-	
-	@Autowired
-	UserService userService;
-	
-	@Test
-	@Ignore("Unignore if you want to make the Item class persistable, see also Item and liquibase.xml")
-	public void saveItem_shouldSaveAllPropertiesInDb() {
-		//Given
-		Item item = new Item();
-		item.setDescription("some description");
-		item.setOwner(userService.getUser(1));
-		
-		//When
-		dao.saveItem(item);
-		
-		//Let's clean up the cache to be sure getItemByUuid fetches from DB and not from cache
-		Context.flushSession();
-		Context.clearSession();
-		
-		//Then
-		Item savedItem = dao.getItemByUuid(item.getUuid());
-		
-		assertThat(savedItem, hasProperty("uuid", is(item.getUuid())));
-		assertThat(savedItem, hasProperty("owner", is(item.getOwner())));
-		assertThat(savedItem, hasProperty("description", is(item.getDescription())));
-	}
 }
