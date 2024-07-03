@@ -9,15 +9,12 @@
  */
 package org.openmrs.module.eversauditing.web.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openmrs.Encounter;
-import org.openmrs.Patient;
-import org.openmrs.Person;
 import org.openmrs.module.eversauditing.api.AuditService;
+import org.openmrs.module.eversauditing.api.utill.ClassUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -55,11 +52,7 @@ public class EversauditingController {
 	
 	@ModelAttribute("classes")
 	protected List<String> getClasses() throws Exception {
-		List<String> classes = new ArrayList<>();
-		classes.add(Patient.class.getName());
-		classes.add(Person.class.getName());
-		classes.add(Encounter.class.getName());
-		return classes;
+		return ClassUtil.findClassesWithAuditedAnnotation();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
