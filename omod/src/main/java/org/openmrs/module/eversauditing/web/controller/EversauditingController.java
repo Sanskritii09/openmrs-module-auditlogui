@@ -30,8 +30,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "module/enversauditing/enversauditing.form")
 public class EversauditingController {
 	
-	protected final Log log = LogFactory.getLog(getClass());
-	
 	private final String VIEW = "/module/enversauditing/enversauditing";
 	
 	private final AuditService auditService;

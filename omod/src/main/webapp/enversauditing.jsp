@@ -24,6 +24,7 @@
             <th>ID</th>
             <th>Changed By</th>
             <th>Changed On</th>
+            <th>Revision Type</th>
         </tr>
         </thead>
         <tbody>
@@ -32,6 +33,7 @@
                 <td>${audit.entity.id}</td>
                 <td>${audit.revisionEntity.changedBy}</td>
                 <td>${audit.revisionEntity.changedOn}</td>
+                <td>${audit.revisionType.name()}</td>
             </tr>
         </c:forEach>
         </tbody>

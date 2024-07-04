@@ -1,5 +1,6 @@
 package org.openmrs.module.eversauditing;
 
+import org.hibernate.envers.RevisionType;
 import org.openmrs.api.db.hibernate.envers.OpenmrsRevisionEntity;
 
 public class AuditEntity<T> {
@@ -8,9 +9,12 @@ public class AuditEntity<T> {
 	
 	private OpenmrsRevisionEntity revisionEntity;
 	
-	public AuditEntity(T entity, OpenmrsRevisionEntity revisionEntity) {
+	private RevisionType revisionType;
+	
+	public AuditEntity(T entity, OpenmrsRevisionEntity revisionEntity, RevisionType revisionType) {
 		this.entity = entity;
 		this.revisionEntity = revisionEntity;
+		this.revisionType = revisionType;
 	}
 	
 	public T getEntity() {
@@ -27,5 +31,13 @@ public class AuditEntity<T> {
 	
 	public void setRevisionEntity(OpenmrsRevisionEntity revisionEntity) {
 		this.revisionEntity = revisionEntity;
+	}
+	
+	public RevisionType getRevisionType() {
+		return revisionType;
+	}
+	
+	public void setRevisionType(RevisionType revisionType) {
+		this.revisionType = revisionType;
 	}
 }

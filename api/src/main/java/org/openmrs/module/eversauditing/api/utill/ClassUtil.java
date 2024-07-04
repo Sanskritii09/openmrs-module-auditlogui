@@ -48,7 +48,7 @@ public class ClassUtil {
 	 * 
 	 * @param metadataReader
 	 * @return true if it finds {@literal @}Audited annotation in the class or any of its methods.
-     */
+	 */
 	private static boolean doesClassContainsAuditedAnnotation(MetadataReader metadataReader) {
 		try {
 			Class dwrClass = Class.forName(metadataReader.getClassMetadata().getClassName());

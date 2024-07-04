@@ -12,6 +12,7 @@ package org.openmrs.module.eversauditing.api.dao;
 import org.hibernate.SessionFactory;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
+import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.query.AuditQuery;
 import org.openmrs.api.db.hibernate.envers.OpenmrsRevisionEntity;
 import org.openmrs.module.eversauditing.AuditEntity;
@@ -38,7 +39,8 @@ public class AuditDao {
                     Object[] array = (Object[]) result;
                     T entity = entityClass.cast(array[0]);
                     OpenmrsRevisionEntity revisionEntity = (OpenmrsRevisionEntity) array[1];
-                    return new AuditEntity<>(entity, revisionEntity);
+                    RevisionType revisionType = (RevisionType) array[2];
+                    return new AuditEntity<>(entity, revisionEntity, revisionType);
                 })
                 .collect(Collectors.toList());
     }
