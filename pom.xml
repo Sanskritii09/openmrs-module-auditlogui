@@ -9,10 +9,10 @@
     </parent>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>enversauditing</artifactId>
+	<artifactId>auditlog-ui</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Envers Auditing</name>
+	<name>Audit Log UI</name>
 	<description>no description</description>
 
 	<url>https://wiki.openmrs.org/x/FQ4z</url>

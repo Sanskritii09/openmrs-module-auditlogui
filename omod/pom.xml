@@ -3,19 +3,19 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>enversauditing</artifactId>
+		<artifactId>auditlog-ui</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>enversauditing-omod</artifactId>
+	<artifactId>auditlog-ui-omod</artifactId>
 	<packaging>jar</packaging>
 	<name>Envers Auditing OMOD</name>
-	<description>Omod submodule for Envers Auditing</description>
+	<description>omod submodule for Envers Auditing</description>
 
 	<dependencies>
         <dependency>
             <groupId>org.openmrs.module</groupId>
-            <artifactId>eversauditing-api</artifactId>
+            <artifactId>auditlog-ui-api</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 		<dependency>
@@ -32,12 +32,6 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>legacyui-omod</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.openmrs.module</groupId>
-			<artifactId>enversauditing-api</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 

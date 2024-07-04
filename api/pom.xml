@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>enversauditing</artifactId>
+		<artifactId>auditlog-ui</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>enversauditing-api</artifactId>
+	<artifactId>auditlog-ui-api</artifactId>
 	<packaging>jar</packaging>
 	<name>Envers Auditing API</name>
 	<description>API project for Envers Auditing</description>
