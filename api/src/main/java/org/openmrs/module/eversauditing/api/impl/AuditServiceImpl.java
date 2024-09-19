@@ -1,5 +1,6 @@
 package org.openmrs.module.eversauditing.api.impl;
 
+import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.eversauditing.AuditEntity;
 import org.openmrs.module.eversauditing.api.AuditService;
 import org.openmrs.module.eversauditing.api.dao.AuditDao;
@@ -8,11 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
-public class AuditServiceImpl implements AuditService {
+public class AuditServiceImpl extends BaseOpenmrsService implements AuditService {
 	
 	private final AuditDao auditingDao;
 	

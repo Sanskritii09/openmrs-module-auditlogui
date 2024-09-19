@@ -9,7 +9,7 @@
     </parent>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>auditlog-ui</artifactId>
+	<artifactId>auditlogui</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Audit Log UI</name>

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface AuditService {
 	
-	public <T> List<AuditEntity<T>> getAllRevisions(Class<T> entityClass);
+	<T> List<AuditEntity<T>> getAllRevisions(Class<T> entityClass);
 	
-	public <T> List<AuditEntity<T>> getAllRevisions(String entityClass);
+	<T> List<AuditEntity<T>> getAllRevisions(String entityClass);
 	
 }

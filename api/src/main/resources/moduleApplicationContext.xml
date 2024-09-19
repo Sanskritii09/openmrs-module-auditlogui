@@ -27,32 +27,32 @@
 
     <!-- Wraps EversauditingService methods in DB transactions and OpenMRS interceptors,
     which set audit info like dateCreated, changedBy, etc.-->
-    <bean id="eversauditing.EversauditingService"
-            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
-        <property name="transactionManager">
-            <ref bean="transactionManager" />
-        </property>
-        <property name="target">
-            <bean class="org.openmrs.module.eversauditing.api.impl.EversauditingServiceImpl">
-                <property name="dao" ref="eversauditing.EversauditingDao" />
-            </bean>
-        </property>
-        <property name="preInterceptors">
-            <ref bean="serviceInterceptors" />
-        </property>
-        <property name="transactionAttributeSource">
-            <ref bean="transactionAttributeSource" />
-        </property>
-    </bean>
+<!--    <bean id="eversauditing.EversauditingService"-->
+<!--            class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">-->
+<!--        <property name="transactionManager">-->
+<!--            <ref bean="transactionManager" />-->
+<!--        </property>-->
+<!--        <property name="target">-->
+<!--            <bean class="org.openmrs.module.eversauditing.api.impl.EversauditingServiceImpl">-->
+<!--                <property name="dao" ref="eversauditing.EversauditingDao" />-->
+<!--            </bean>-->
+<!--        </property>-->
+<!--        <property name="preInterceptors">-->
+<!--            <ref bean="serviceInterceptors" />-->
+<!--        </property>-->
+<!--        <property name="transactionAttributeSource">-->
+<!--            <ref bean="transactionAttributeSource" />-->
+<!--        </property>-->
+<!--    </bean>-->
 
     <!-- Adds EversauditingService to OpenMRS context so it can be accessed
     calling Context.getService(EversauditingService.class) -->
-    <bean parent="serviceContext">
-        <property name="moduleService">
-            <list>
-                <value>org.openmrs.module.eversauditing.api.EversauditingService</value>
-                <ref bean="eversauditing.EversauditingService" />
-            </list>
-        </property>
-    </bean>
+<!--    <bean parent="serviceContext">-->
+<!--        <property name="moduleService">-->
+<!--            <list>-->
+<!--                <value>org.openmrs.module.eversauditing.api.EversauditingService</value>-->
+<!--                <ref bean="eversauditing.EversauditingService" />-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
 </beans>

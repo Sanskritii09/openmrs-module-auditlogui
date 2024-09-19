@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 'module/${rootArtifactid}/${rootArtifactid}Link.form'.
  */
 @Controller
-@RequestMapping(value = "module/enversauditing/enversauditing.form")
+@RequestMapping(value = "module/auditlogui/enversauditing.form")
 public class EversauditingController {
 	
-	private final String VIEW = "/module/enversauditing/enversauditing";
+	private final String VIEW = "/module/auditlogui/enversauditing";
 	
 	private final AuditService auditService;
 	
