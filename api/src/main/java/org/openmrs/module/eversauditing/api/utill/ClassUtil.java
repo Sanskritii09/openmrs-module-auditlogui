@@ -1,5 +1,7 @@
 package org.openmrs.module.eversauditing.api.utill;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hibernate.envers.Audited;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -11,8 +13,11 @@ import org.springframework.util.ClassUtils;
 import org.springframework.util.SystemPropertyUtils;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ClassUtil {
 	
@@ -36,6 +41,33 @@ public class ClassUtil {
 		}
 		
 		return candidateClasses;
+	}
+	
+	public static String convertObjectToJson(Object obj) {
+		Map<String, Object> fieldMap = new HashMap<>();
+		Class<?> objClass = obj.getClass();
+
+		while (objClass != null) {
+			Field[] fields = objClass.getDeclaredFields();
+			for (Field field : fields) {
+				field.setAccessible(true);
+				try {
+					fieldMap.put(field.getName(), field.get(obj));
+				} catch (IllegalAccessException e) {
+					fieldMap.put(field.getName(), "Could not access");
+				}
+			}
+			objClass = objClass.getSuperclass();  // Move to superclass
+		}
+
+
+		ObjectMapper objectMapper = new ObjectMapper();
+		try {
+			return objectMapper.writeValueAsString(fieldMap);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	private static String resolveBasePackage(String basePackage) {

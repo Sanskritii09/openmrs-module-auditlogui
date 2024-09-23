@@ -32,7 +32,7 @@ public class AuditDao {
 	
 	@SuppressWarnings("unchecked")
     public <T> List<AuditEntity<T>> getAllRevisions(Class<T> entityClass) {
-        AuditReader auditReader = AuditReaderFactory.get(sessionFactory.getCurrentSession());
+		AuditReader auditReader = AuditReaderFactory.get(sessionFactory.getCurrentSession());;
         AuditQuery auditQuery = auditReader.createQuery().forRevisionsOfEntity(entityClass, false, true);
         return (List<AuditEntity<T>>) auditQuery.getResultList().stream()
                 .map(result -> {
@@ -44,4 +44,10 @@ public class AuditDao {
                 })
                 .collect(Collectors.toList());
     }
+	
+	public <T> T getRevisionById(Class<T> entityClass, int entityId, int revisionId) {
+		AuditReader auditReader = AuditReaderFactory.get(sessionFactory.getCurrentSession());
+		T entity = auditReader.find(entityClass, entityId, revisionId);
+		return entity;
+	}
 }

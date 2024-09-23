@@ -11,6 +11,10 @@ public class AuditEntity<T> {
 	
 	private RevisionType revisionType;
 	
+	public AuditEntity(T entity) {
+		this.entity = entity;
+	}
+	
 	public AuditEntity(T entity, OpenmrsRevisionEntity revisionEntity, RevisionType revisionType) {
 		this.entity = entity;
 		this.revisionEntity = revisionEntity;

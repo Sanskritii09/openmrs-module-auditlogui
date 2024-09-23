@@ -11,4 +11,11 @@
 	<packaging>jar</packaging>
 	<name>Envers Auditing API</name>
 	<description>API project for Envers Auditing</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+	</dependencies>
 </project>

@@ -40,11 +40,8 @@ public class AdminList extends AdministrationSectionExt {
 	 * @see org.openmrs.module.web.extension.AdministrationSectionExt#getLinks()
 	 */
 	public Map<String, String> getLinks() {
-		
 		Map<String, String> map = new HashMap<>();
-		
-		map.put("module/auditlogui/enversauditing.form", "View audits");
-		
+		map.put("module/auditlogui/allAudits.form", "View all audits");
 		return map;
 	}
 }

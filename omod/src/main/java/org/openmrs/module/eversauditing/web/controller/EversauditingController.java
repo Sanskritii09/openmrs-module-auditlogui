@@ -11,8 +11,7 @@ package org.openmrs.module.eversauditing.web.controller;
 
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.openmrs.PersonName;
 import org.openmrs.module.eversauditing.api.AuditService;
 import org.openmrs.module.eversauditing.api.utill.ClassUtil;
 import org.springframework.stereotype.Controller;
@@ -27,10 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
  * 'module/${rootArtifactid}/${rootArtifactid}Link.form'.
  */
 @Controller
-@RequestMapping(value = "module/auditlogui/enversauditing.form")
+@RequestMapping(value = "module/auditlogui/allAudits.form")
 public class EversauditingController {
 	
-	private final String VIEW = "/module/auditlogui/enversauditing";
+	private final String VIEW = "/module/auditlogui/allAudits";
 	
 	private final AuditService auditService;
 	
