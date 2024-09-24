@@ -39,7 +39,7 @@
             <c:forEach var="audit" items="${audits}" varStatus="status">
                 <tr valign="top" class="${status.index % 2 == 0 ? "evenRow" : "oddRow"}">
                     <td>${audit.entity.id}</td>
-                    <td>${audit.revisionEntity.changedBy}</td>
+                    <td>${audit.changedBy}</td>
                     <td>${audit.revisionEntity.changedOn}</td>
                     <td>${audit.revisionType.name()}</td>
                 </tr>

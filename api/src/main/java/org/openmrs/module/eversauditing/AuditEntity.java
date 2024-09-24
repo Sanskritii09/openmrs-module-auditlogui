@@ -11,14 +11,17 @@ public class AuditEntity<T> {
 	
 	private RevisionType revisionType;
 	
+	private String changedBy;
+	
 	public AuditEntity(T entity) {
 		this.entity = entity;
 	}
 	
-	public AuditEntity(T entity, OpenmrsRevisionEntity revisionEntity, RevisionType revisionType) {
+	public AuditEntity(T entity, OpenmrsRevisionEntity revisionEntity, RevisionType revisionType, String changedBy) {
 		this.entity = entity;
 		this.revisionEntity = revisionEntity;
 		this.revisionType = revisionType;
+		this.changedBy = changedBy;
 	}
 	
 	public T getEntity() {
@@ -43,5 +46,13 @@ public class AuditEntity<T> {
 	
 	public void setRevisionType(RevisionType revisionType) {
 		this.revisionType = revisionType;
+	}
+	
+	public String getChangedBy() {
+		return changedBy;
+	}
+	
+	public void setChangedBy(String changedBy) {
+		this.changedBy = changedBy;
 	}
 }

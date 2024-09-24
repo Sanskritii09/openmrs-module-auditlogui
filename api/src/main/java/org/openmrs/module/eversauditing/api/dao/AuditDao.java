@@ -14,6 +14,7 @@ import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
 import org.hibernate.envers.RevisionType;
 import org.hibernate.envers.query.AuditQuery;
+import org.openmrs.api.context.Context;
 import org.openmrs.api.db.hibernate.envers.OpenmrsRevisionEntity;
 import org.openmrs.module.eversauditing.AuditEntity;
 import org.springframework.stereotype.Repository;
@@ -40,7 +41,8 @@ public class AuditDao {
                     T entity = entityClass.cast(array[0]);
                     OpenmrsRevisionEntity revisionEntity = (OpenmrsRevisionEntity) array[1];
                     RevisionType revisionType = (RevisionType) array[2];
-                    return new AuditEntity<>(entity, revisionEntity, revisionType);
+					String changedBy = Context.getUserService().getUser(revisionEntity.getChangedBy()).toString();
+                    return new AuditEntity<>(entity, revisionEntity, revisionType, changedBy);
                 })
                 .collect(Collectors.toList());
     }
