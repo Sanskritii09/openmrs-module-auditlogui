@@ -15,9 +15,11 @@ import org.springframework.util.SystemPropertyUtils;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ClassUtil {
 	
@@ -29,7 +31,7 @@ public class ClassUtil {
 		String packageSearchPath = ResourcePatternResolver.CLASSPATH_ALL_URL_PREFIX + resolveBasePackage("org.openmrs")
 		        + "/**/*.class";
 		
-		List<String> candidateClasses = new ArrayList<String>();
+		List<String> candidateClasses = new ArrayList<>();
 		Resource[] resources = resourcePatternResolver.getResources(packageSearchPath);
 		for (Resource resource : resources) {
 			if (resource.isReadable()) {
@@ -40,7 +42,7 @@ public class ClassUtil {
 			}
 		}
 		
-		return candidateClasses;
+		return candidateClasses.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
 	}
 	
 	public static String convertObjectToJson(Object obj) {
