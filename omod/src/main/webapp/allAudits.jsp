@@ -37,12 +37,13 @@
             </thead>
             <tbody>
             <c:forEach var="audit" items="${audits}" varStatus="status">
-                <tr valign="top" class="${status.index % 2 == 0 ? "evenRow" : "oddRow"}">
-                    <td>${audit.entity.id}</td>
-                    <td>${audit.changedBy}</td>
-                    <td>${audit.revisionEntity.changedOn}</td>
-                    <td>${audit.revisionType.name()}</td>
-                </tr>
+                    <tr valign="top" class="${status.index % 2 == 0 ? "evenRow" : "oddRow"}"
+                        onclick="window.location.href='${pageContext.request.contextPath}/module/auditlogui/viewAudit.form?auditId=${audit.revisionEntity.id}&entityId=${audit.entity.id}&class=${currentClass}'">
+                        <td>${audit.entity.id}</td>
+                        <td>${audit.changedBy}</td>
+                        <td>${audit.revisionEntity.changedOn}</td>
+                        <td>${audit.revisionType.name()}</td>
+                    </tr>
             </c:forEach>
             </tbody>
         </table>
