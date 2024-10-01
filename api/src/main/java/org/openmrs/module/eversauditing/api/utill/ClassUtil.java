@@ -23,7 +23,13 @@ import java.util.stream.Collectors;
 
 public class ClassUtil {
 	
+	private static List<String> classesWithAuditAnnotation;
+	
 	public static List<String> findClassesWithAuditedAnnotation() throws IOException {
+		if(classesWithAuditAnnotation != null) {
+			return classesWithAuditAnnotation;
+		}
+
 		ResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
 		MetadataReaderFactory metadataReaderFactory = new CachingMetadataReaderFactory(resourcePatternResolver);
 		
@@ -41,8 +47,9 @@ public class ClassUtil {
 				}
 			}
 		}
-		
-		return candidateClasses.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+
+	 	classesWithAuditAnnotation =candidateClasses.stream().sorted(Comparator.naturalOrder()).collect(Collectors.toList());
+		return classesWithAuditAnnotation;
 	}
 	
 	public static String convertObjectToJson(Object obj) {
